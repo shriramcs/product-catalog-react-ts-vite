@@ -8,7 +8,7 @@
 
 .search-container {
   flex: 1;
-  min-width: 250px;
+  margin-right: 10px;
 }
 
 .search-input {
@@ -30,4 +30,5 @@
   border-radius: 4px;
   font-size: 16px;
   background-color: white;
+  height: 40px;
 }
