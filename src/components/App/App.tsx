@@ -6,7 +6,6 @@ import usePagination from '../../hooks/usePagination';
 import SearchFilter from '../SearchFilter';
 import ProductList from '../ProductList';
 import Pagination from '../Pagination';
-import React from 'react';
 
 function App() {
   const { products, loading, error, categories, removeProduct } = useProducts();

@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import type { Product } from '../../types';
 import ProductCard from '../ProductCard/ProductCard';
 import './ProductList.css';

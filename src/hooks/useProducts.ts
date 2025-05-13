@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import type { Product } from '../types';
-import ProductCard from '../components/ProductCard';
 
 const API_URL = 'https://fakestoreapi.com/products';
 
