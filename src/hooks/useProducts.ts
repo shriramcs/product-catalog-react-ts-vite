@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Product } from '../types';
+import ProductCard from '../components/ProductCard';
 
 const API_URL = 'https://fakestoreapi.com/products';
 
@@ -9,6 +10,7 @@ interface UseProductsResult {
   error: string | null;
   categories: string[];
   fetchProducts: (url?: string) => void;
+  removeProduct: (id: number) => void;
 }
 
 const useProducts = (initialUrl: string = API_URL): UseProductsResult => {
@@ -33,7 +35,7 @@ const useProducts = (initialUrl: string = API_URL): UseProductsResult => {
       // Extract unique categories
       const uniqueCategories: string[] = [
         ...new Set(data.map((product: Product) => product.category)),
-      ];
+      ] as string[];
       setCategories(uniqueCategories);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
@@ -42,11 +44,15 @@ const useProducts = (initialUrl: string = API_URL): UseProductsResult => {
     }
   };
 
+  const removeProduct = (id: number) => {
+    setProducts(products.filter(prod=> prod.id != id));
+  }
+
   useEffect(() => {
     fetchProducts();
   }, [initialUrl]);
 
-  return { products, loading, error, categories, fetchProducts };
+  return { products, loading, error, categories, fetchProducts, removeProduct };
 };
 
 export default useProducts;

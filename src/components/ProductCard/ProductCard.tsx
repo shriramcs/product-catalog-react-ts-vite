@@ -1,11 +1,13 @@
+import React from 'react';
 import type { Product } from '../../types';
 import './ProductCard.css';
 
 interface ProductCardProps {
   product: Product;
+  removeEventHandler: (id: number) => void
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, removeEventHandler }: ProductCardProps) => {
   return (
     <div className="product-card">
       <div className="product-image-container">
@@ -29,6 +31,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
             ({product.rating.count} reviews)
           </span>
         </div>
+        <button onClick={() => removeEventHandler(product.id)}>Remove</button>
       </div>
     </div>
   );

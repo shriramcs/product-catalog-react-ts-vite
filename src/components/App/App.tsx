@@ -6,16 +6,17 @@ import usePagination from '../../hooks/usePagination';
 import SearchFilter from '../SearchFilter';
 import ProductList from '../ProductList';
 import Pagination from '../Pagination';
+import React from 'react';
 
 function App() {
-  const { products, loading, error, categories } = useProducts();
+  const { products, loading, error, categories, removeProduct } = useProducts();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const productsPerPage = 5;
 
   // Use the custom hook for filtering
-  const filteredProducts = useFilteredProducts(products, searchTerm, selectedCategory);
+  let filteredProducts = useFilteredProducts(products, searchTerm, selectedCategory);
 
   // Use the custom hook for pagination
   const { paginatedData: currentProducts, totalPages } = usePagination(
@@ -55,7 +56,10 @@ function App() {
 
       {!loading && !error && (
         <>
-          <ProductList products={currentProducts} />
+          <ProductList
+            products={currentProducts}
+            removeEventHandler={removeProduct}
+          />
 
           <Pagination
             currentPage={currentPage}
